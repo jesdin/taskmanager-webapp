@@ -1,0 +1,53 @@
+﻿@page
+@model TaskManagerApp.Pages.MyTasks.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Create</h2>
+
+<h4>MyTask</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MyTask.Title" class="control-label"></label>
+                <input asp-for="MyTask.Title" class="form-control" />
+                <span asp-validation-for="MyTask.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MyTask.Description" class="control-label"></label>
+                <input asp-for="MyTask.Description" class="form-control" />
+                <span asp-validation-for="MyTask.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="MyTask.IsCompleted" /> @Html.DisplayNameFor(model => model.IsCompleted))
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="MyTask.IsHighPriority" /> @Html.DisplayNameFor(model => model.IsHighPriority))
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
