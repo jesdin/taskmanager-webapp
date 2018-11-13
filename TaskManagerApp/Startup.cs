@@ -56,7 +56,6 @@ namespace TaskManagerApp
             else
             {
                 app.UseExceptionHandler("/Error");
-                app.UseHsts();
             }
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
@@ -69,7 +68,6 @@ namespace TaskManagerApp
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
