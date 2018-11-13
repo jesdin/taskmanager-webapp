@@ -29,6 +29,7 @@ namespace TaskManagerApp.Api
 
         // GET: api/MyTasks/5
         [HttpGet("{id}")]
+        [ProducesResponseType(typeof(MyTask), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetMyTask([FromRoute] int id)
         {
             if (!ModelState.IsValid)
