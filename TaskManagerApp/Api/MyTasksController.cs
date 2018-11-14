@@ -49,7 +49,7 @@ namespace TaskManagerApp.Api
 
         // PUT: api/MyTasks/5
         [HttpPut("{id}")]
-        [ProducesResponseType(typeof(MyTask), StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> PutMyTask([FromRoute] int id, [FromBody] MyTask myTask)
         {
             if (!ModelState.IsValid)
@@ -85,6 +85,7 @@ namespace TaskManagerApp.Api
 
         // POST: api/MyTasks
         [HttpPost]
+        [ProducesResponseType(typeof(MyTask), StatusCodes.Status201Created)]
         public async Task<IActionResult> PostMyTask([FromBody] MyTask myTask)
         {
             if (!ModelState.IsValid)
