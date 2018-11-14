@@ -5,10 +5,11 @@
     ViewData["Title"] = "My Tasks";
 }
 
-<h2>My Tasks</h2>
-
+<br />
 <a asp-page="Create"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Create New Task">Create</button></a>
 <hr />
+
+<h2 class="display-4">My Tasks</h2>
 <div class="row">
     @foreach (var item in Model.MyTask)
     {
@@ -27,7 +28,7 @@
 </div>
 
 <hr />
-<h2>Completed Tasks</h2>
+<h2 class="display-4">Completed Tasks</h2>
 <div class="row">
     @foreach (var item in Model.MyTask)
     {
@@ -44,47 +45,3 @@
         }
     }
 </div>
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.MyTask[0].Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.MyTask[0].Description)
-            </th>
-            <th>
-                Completed
-            </th>
-            <th>
-                High Priority
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.MyTask)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsCompleted)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.IsHighPriority)
-                </td>
-                <td>
-                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
