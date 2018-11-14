@@ -1,6 +1,6 @@
 ﻿@model MyTask
 
-@{ 
+@{
     var border = Model.IsHighPriority && !Model.IsCompleted ? "border-danger" : "border - dark";
     var style = Model.IsCompleted ? "opacity: .5;" : "";
 }
@@ -10,6 +10,10 @@
         <div class="card-body">
             <h4 class="card-title">@Html.DisplayFor(modelItem => Model.Title)</h4>
             <p class="card-text">@Html.DisplayFor(modelItem => Model.Description)</p>
+            <p class="card-text" style="text-align:end">
+                <a asp-page="./Edit" asp-route-id="@Model.ID" data-toggle="tooltip" data-placement="down" title="Edit this Task">Edit</a> |
+                <a asp-page="./Delete" asp-route-id="@Model.ID"  data-toggle="tooltip" data-placement="down" title="Edit this Task">Delete</a>
+            </p>
         </div>
     </div>
 </div>
