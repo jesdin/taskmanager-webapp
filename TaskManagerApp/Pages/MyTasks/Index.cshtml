@@ -7,9 +7,72 @@
 
 <h2>My Tasks</h2>
 
-<p>
-    <a asp-page="Create">Create New</a>
-</p>
+<a asp-page="Create"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="right" title="Create New Task">Create</button></a>
+<hr />
+<div class="row">
+    @foreach (var item in Model.MyTask)
+    {
+        @if (item.IsHighPriority && !item.IsCompleted)
+        {
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card border-danger mb-3" style="max-width: 20rem;">
+                    <div class="card-body">
+                        <h4 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h4>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    @foreach (var item in Model.MyTask)
+    {
+        @if (!item.IsHighPriority && !item.IsCompleted)
+        {
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card border-dark mb-3" style="max-width: 20rem;">
+                    <div class="card-body">
+                        <h4 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h4>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+<hr />
+<h2>Completed Tasks</h2>
+<div class="row">
+    @foreach (var item in Model.MyTask)
+    {
+        @if (item.IsHighPriority && item.IsCompleted)
+        {
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card border-danger mb-3" style="max-width: 20rem; opacity:0.5;">
+                    <div class="card-body">
+                        <h4 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h4>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+    @foreach (var item in Model.MyTask)
+    {
+        @if (!item.IsHighPriority && item.IsCompleted)
+        {
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card border-dark mb-3" style="max-width: 20rem; opacity:0.5;">
+                    <div class="card-body">
+                        <h4 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h4>
+                        <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>
+
 <table class="table">
     <thead>
         <tr>
@@ -29,26 +92,27 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model.MyTask) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsCompleted)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsHighPriority)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model.MyTask)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsCompleted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsHighPriority)
+                </td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>
