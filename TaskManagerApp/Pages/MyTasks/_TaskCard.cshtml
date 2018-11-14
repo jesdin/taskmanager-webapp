@@ -1,0 +1,15 @@
+﻿@model MyTask
+
+@{ 
+    var border = Model.IsHighPriority && !Model.IsCompleted ? "border-danger" : "border - dark";
+    var style = Model.IsCompleted ? "opacity: .5;" : "";
+}
+
+<div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="card @border mb-3" style="max-width: 20rem; @style">
+        <div class="card-body">
+            <h4 class="card-title">@Html.DisplayFor(modelItem => Model.Title)</h4>
+            <p class="card-text">@Html.DisplayFor(modelItem => Model.Description)</p>
+        </div>
+    </div>
+</div>

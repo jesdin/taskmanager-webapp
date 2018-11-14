@@ -14,28 +14,14 @@
     {
         @if (item.IsHighPriority && !item.IsCompleted)
         {
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="card border-danger mb-3" style="max-width: 20rem;">
-                    <div class="card-body">
-                        <h4 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h4>
-                        <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
-                    </div>
-                </div>
-            </div>
+            <partial name="_TaskCard.cshtml" model="item" />
         }
     }
     @foreach (var item in Model.MyTask)
     {
         @if (!item.IsHighPriority && !item.IsCompleted)
         {
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="card border-dark mb-3" style="max-width: 20rem;">
-                    <div class="card-body">
-                        <h4 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h4>
-                        <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
-                    </div>
-                </div>
-            </div>
+            <partial name="_TaskCard.cshtml" model="item" />
         }
     }
 </div>
@@ -47,28 +33,14 @@
     {
         @if (item.IsHighPriority && item.IsCompleted)
         {
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="card border-danger mb-3" style="max-width: 20rem; opacity:0.5;">
-                    <div class="card-body">
-                        <h4 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h4>
-                        <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
-                    </div>
-                </div>
-            </div>
+            <partial name="_TaskCard.cshtml" model="item" />
         }
     }
     @foreach (var item in Model.MyTask)
     {
         @if (!item.IsHighPriority && item.IsCompleted)
         {
-            <div class="col-lg-4 col-md-6 col-sm-12">
-                <div class="card border-dark mb-3" style="max-width: 20rem; opacity:0.5;">
-                    <div class="card-body">
-                        <h4 class="card-title">@Html.DisplayFor(modelItem => item.Title)</h4>
-                        <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
-                    </div>
-                </div>
-            </div>
+            <partial name="_TaskCard.cshtml" model="item" />
         }
     }
 </div>
