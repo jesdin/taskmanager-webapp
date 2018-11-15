@@ -1,7 +1,7 @@
 ﻿@model MyTask
 
 @{
-    var border = Model.IsHighPriority && !Model.IsCompleted ? "border-danger" : "border - dark";
+    var border = Model.IsHighPriority ? "border-danger" : "border - dark";
     var style = Model.IsCompleted ? "opacity: .5;" : "";
 }
 
