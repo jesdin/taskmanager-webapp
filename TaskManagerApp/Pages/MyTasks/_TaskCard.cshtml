@@ -12,7 +12,8 @@
             <p class="card-text">@Html.DisplayFor(modelItem => Model.Description)</p>
             <p class="card-text" style="text-align:end">
                 <a asp-page="./Edit" asp-route-id="@Model.ID" data-toggle="tooltip" data-placement="down" title="Edit this Task">Edit</a> |
-                <a asp-page="./Delete" asp-route-id="@Model.ID"  data-toggle="tooltip" data-placement="down" title="Edit this Task">Delete</a>
+                <a asp-page="./Delete" asp-route-id="@Model.ID" data-toggle="tooltip" data-placement="down" title="Delete this Task">Delete</a>
+
         </div>
     </div>
 </div>

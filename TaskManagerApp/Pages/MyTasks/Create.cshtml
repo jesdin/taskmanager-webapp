@@ -5,10 +5,9 @@
     ViewData["Title"] = "Create";
 }
 
-<h2>Create</h2>
+<h2 class="display-4">Create Task</h2>
+<br />
 
-<h4>MyTask</h4>
-<hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
@@ -23,14 +22,14 @@
                 <input asp-for="MyTask.Description" class="form-control" />
                 <span asp-validation-for="MyTask.Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="padding-left:20px">
                 <div class="checkbox">
                     <label>
                         <input asp-for="MyTask.IsCompleted" /> Completed
                     </label>
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="padding-left:20px">
                 <div class="checkbox">
                     <label>
                         <input asp-for="MyTask.IsHighPriority" /> High Priority
@@ -38,14 +37,11 @@
                 </div>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create Task" class="btn btn-success" /> | 
+                <a asp-page="Index">Back to List</a>
             </div>
         </form>
     </div>
-</div>
-
-<div>
-    <a asp-page="Index">Back to List</a>
 </div>
 
 @section Scripts {
