@@ -3,47 +3,22 @@
 @{
     var border = Model.IsHighPriority ? "border-danger" : "border - dark";
     var style = Model.IsCompleted ? "opacity: .5;" : "";
+    var btnClass = Model.IsCompleted ? "btn-danger" : "btn-success";
+    var btnText = Model.IsCompleted ? "Set Not Completed" : "Set Completed";
 }
-
-<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript">
-    function sendPutRequest(id, title, desc, priority) {
-        debugger;
-        $.ajax({
-            type: "put",
-            url: "https://localhost:44381/api/MyTasks/" + id,
-            contentType: "application/json",
-            data: JSON.stringify({
-                "id": id,
-                "title": title,
-                "description": desc,
-                "isCompleted": document.getElementById(id + "-completed").checked,
-                "isHighPriority": priority.toLowerCase()
-            }),
-            success: function () {
-                console.log(id);
-                location.reload();
-            }
-        })
-    }
-</script>
 
 <div class="col-lg-4 col-md-6 col-sm-12">
     <div class="card @border mb-3" style="max-width: 20rem; @style">
         <div class="card-body">
             <h4 class="card-title">@Html.DisplayFor(modelItem => Model.Title)</h4>
             <p class="card-text">@Html.DisplayFor(modelItem => Model.Description)</p>
-            <div class="form-group" style="padding-left:20px">
-                <div>
-                    <label>
-                        <input asp-for="@Model.IsCompleted" id="@Model.ID-completed" onclick="sendPutRequest(@Model.ID, '@Model.Title', '@Model.Description', '@Model.IsHighPriority')" /> Completed
-                    </label>
-                </div>
+            <div class="form-group">
+                <button class="btn @btnClass" asp-for="@Model.IsCompleted" id="@Model.ID-completed" onclick="sendPutRequest(@Model.ID, '@Model.Title', '@Model.Description', '@Model.IsHighPriority', '@Model.IsCompleted')"> @btnText </button>
+                <p class="card-text" style="text-align:end">
+                    <a asp-page="./Edit" asp-route-id="@Model.ID" data-toggle="tooltip" data-placement="down" title="Edit this Task">Edit</a> |
+                    <a asp-page="./Delete" asp-route-id="@Model.ID" data-toggle="tooltip" data-placement="down" title="Delete this Task">Delete</a>
+                </p>
             </div>
-            <p class="card-text" style="text-align:end">
-                <a asp-page="./Edit" asp-route-id="@Model.ID" data-toggle="tooltip" data-placement="down" title="Edit this Task">Edit</a> |
-                <a asp-page="./Delete" asp-route-id="@Model.ID" data-toggle="tooltip" data-placement="down" title="Delete this Task">Delete</a>
-            </p>
         </div>
     </div>
 </div>
