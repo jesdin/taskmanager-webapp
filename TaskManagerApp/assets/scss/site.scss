@@ -1,3 +1,7 @@
 @import '../../node_modules/bootstrap/scss/bootstrap.scss';
 @import './theme/variables';
 @import './theme/bootswatch';
+
+.card {
+    border-width: 2px
+}
