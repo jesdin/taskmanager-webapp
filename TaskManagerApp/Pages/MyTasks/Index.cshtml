@@ -5,8 +5,7 @@
     ViewData["Title"] = "My Tasks";
 }
 
-
-<h2 style="padding-top:2.5em"><a asp-page="Create" data-toggle="tooltip" data-placement="right" title="Create New Task" style="color:forestgreen">Create</a></h2>
+<a asp-page="Create" class="btn btn-success" role="button" data-toggle="tooltip" data-placement="right" title="Create New Task" style="margin-top:5em">Create</a>
 <hr class="border-dark" />
 
 
@@ -28,7 +27,7 @@
     }
 </div>
 
-<hr />
+<hr class="border-dark" />
 <h2 class="display-4">Completed Tasks</h2>
 <div class="row">
     @foreach (var item in Model.MyTask)
