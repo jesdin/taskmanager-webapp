@@ -9,6 +9,7 @@ namespace TaskManagerApp.Models
     public class MyTask
     {
         public int ID { get; set; }
+        [Required]
         public string Title { get; set; }
         [DataType(DataType.MultilineText)]
         public string Description { get; set; }
