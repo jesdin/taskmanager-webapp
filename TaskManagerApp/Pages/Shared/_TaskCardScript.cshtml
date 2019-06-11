@@ -1,24 +1,19 @@
 ﻿<script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
-    function sendPutRequest(id, title, desc, priority, isCompleted) {
+    function sendPutRequest(id, isCompleted) {
+        var text
         if (isCompleted == 'True') {
-            isCompleted = 'false';
+            text = "SetAsIncomplete/"
         }
         else {
-            isCompleted = 'true';
+            text = "SetAsComplete/"
         }
         
         $.ajax({
-            type: "put",
-            url: "/api/MyTasks/" + id,
+            type: "post",
+            url: "/api/MyTasks/" + text + id,
             contentType: "application/json",
-            data: JSON.stringify({
-                "id": id,
-                "title": title,
-                "description": desc,
-                "isCompleted": isCompleted,
-                "isHighPriority": priority.toLowerCase()
-            }),
+            data: id,
             success: function () {
                 console.log(id);
                 location.reload();

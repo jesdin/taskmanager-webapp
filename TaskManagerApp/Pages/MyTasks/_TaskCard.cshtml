@@ -13,7 +13,7 @@
             <h4 class="card-title">@Html.DisplayFor(modelItem => Model.Title)</h4>
             <p class="card-text">@Html.DisplayFor(modelItem => Model.Description)</p>
             <div class="form-group">
-                <button  type="button" class="btn @btnClass" asp-for="@Model.IsCompleted" id="@Model.ID-completed" onclick="sendPutRequest(@Model.ID, '@Model.Title', '@Model.Description', '@Model.IsHighPriority', '@Model.IsCompleted')"> @btnText </button>
+                <button  type="button" class="btn @btnClass" asp-for="@Model.IsCompleted" id="@Model.ID-completed" onclick="sendPutRequest(@Model.ID, '@Model.IsCompleted')"> @btnText </button>
                 <p class="card-text" style="text-align:end">
                     <a asp-page="./Edit" asp-route-id="@Model.ID" data-toggle="tooltip" data-placement="down" title="Edit this Task">Edit</a> |
                     <a asp-page="./Delete" asp-route-id="@Model.ID" data-toggle="tooltip" data-placement="down" title="Delete this Task">Delete</a>

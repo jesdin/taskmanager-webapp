@@ -120,6 +120,39 @@ namespace TaskManagerApp.Api
             return Ok(myTask);
         }
 
+        [HttpPost("SetAsComplete/{id}")]
+        public async Task<IActionResult> SetAsComplete([FromRoute]int id)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+
+            var task = await _context.MyTask.FindAsync(id);
+
+            if (task is null) return NotFound();
+            if (task.IsCompleted is true) return Ok();
+
+            task.IsCompleted = true;
+            _context.MyTask.Update(task);
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+        [HttpPost("SetAsIncomplete/{id}")]
+        public async Task<IActionResult> SetAsIncomplete([FromRoute]int id)
+        {
+            if (!ModelState.IsValid) return BadRequest();
+
+            var task = await _context.MyTask.FindAsync(id);
+
+            if (task is null) return NotFound();
+            if (task.IsCompleted is false) return Ok();
+
+            task.IsCompleted = false;
+            _context.MyTask.Update(task);
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+
         private bool MyTaskExists(int id)
         {
             return _context.MyTask.Any(e => e.ID == id);
