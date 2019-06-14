@@ -7,14 +7,24 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
+using TaskManagerApp.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace TaskManagerApp
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            var webhost = CreateWebHostBuilder(args).Build();
+            using (var scope = webhost.Services.CreateScope())
+            {
+                var db = scope.ServiceProvider.GetRequiredService<TaskManagerAppContext>();
+                db.Database.Migrate();
+            }
+
+            await webhost.RunAsync();
         }
 
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
