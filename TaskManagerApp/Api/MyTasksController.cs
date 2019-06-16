@@ -27,8 +27,8 @@ namespace TaskManagerApp.Api
             return _context.MyTask;
         }
 
-        // GET: api/MyTasks/5
-        [HttpGet("{id}")]
+        // GET: api/MyTasks/GetTask/5
+        [HttpGet("GetTask/{id}")]
         [ProducesResponseType(typeof(MyTask), StatusCodes.Status200OK)]
         public async Task<IActionResult> GetMyTask([FromRoute] int id)
         {
@@ -47,20 +47,14 @@ namespace TaskManagerApp.Api
             return Ok(myTask);
         }
 
-        // PUT: api/MyTasks/5
-        [HttpPut("{id}")]
+        // POST: api/MyTasks/EditTask/5
+        [HttpPost("EditTask/{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<IActionResult> PutMyTask([FromRoute] int id, [FromBody] MyTask myTask)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
-            if (id != myTask.ID)
-            {
-                return BadRequest();
-            }
+            if (id != myTask.ID) return BadRequest();
 
             _context.Entry(myTask).State = EntityState.Modified;
 
@@ -83,15 +77,12 @@ namespace TaskManagerApp.Api
             return NoContent();
         }
 
-        // POST: api/MyTasks
-        [HttpPost]
+        // POST: api/MyTasks/Create
+        [HttpPost("Create")]
         [ProducesResponseType(typeof(MyTask), StatusCodes.Status201Created)]
         public async Task<IActionResult> PostMyTask([FromBody] MyTask myTask)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            if (!ModelState.IsValid) return BadRequest(ModelState);
 
             _context.MyTask.Add(myTask);
             await _context.SaveChangesAsync();
@@ -99,20 +90,14 @@ namespace TaskManagerApp.Api
             return CreatedAtAction("GetMyTask", new { id = myTask.ID }, myTask);
         }
 
-        // DELETE: api/MyTasks/5
-        [HttpDelete("{id}")]
+        // POST: api/MyTasks/Delete/5
+        [HttpPost("Delete/{id}")]
         public async Task<IActionResult> DeleteMyTask([FromRoute] int id)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            if (!ModelState.IsValid) return BadRequest();
 
             var myTask = await _context.MyTask.FindAsync(id);
-            if (myTask == null)
-            {
-                return NotFound();
-            }
+            if (myTask == null) return NotFound();
 
             _context.MyTask.Remove(myTask);
             await _context.SaveChangesAsync();
