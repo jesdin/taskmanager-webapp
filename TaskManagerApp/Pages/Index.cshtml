@@ -3,49 +3,67 @@
 
 @{
     ViewData["Title"] = "My Tasks";
+    var completedExists = Model.MyTask.Any(e => e.IsCompleted == true);
 }
 
 <div class="row">
-    <h2 class="display-4 col">My Tasks</h2>
+    <h3 class="col">My Tasks</h3>
     <div class="col-2">
         <a asp-page="Create" class="btn btn-success" role="button" data-toggle="tooltip" data-placement="right" title="Create New Task">Create</a>
     </div>
 </div>
 
 <div class="row">
-    @foreach (var item in Model.MyTask)
+    @if (Model.MyTask.Count == 0)
     {
-        @if (item.IsHighPriority && !item.IsCompleted)
-        {
-            <partial name="_TaskCard.cshtml" model="item" />
-        }
+        <div class="col">
+            <p class="text-muted">Your tasks will appear here. Try creating a new task</p>
+        </div>
     }
-    @foreach (var item in Model.MyTask)
-    {
-        @if (!item.IsHighPriority && !item.IsCompleted)
+    else{
+        @foreach (var item in Model.MyTask)
         {
-            <partial name="_TaskCard.cshtml" model="item" />
+            @if (item.IsHighPriority && !item.IsCompleted)
+            {
+                <partial name="_TaskCard.cshtml" model="item" />
+            }
+        }
+        @foreach (var item in Model.MyTask)
+        {
+            @if (!item.IsHighPriority && !item.IsCompleted)
+            {
+                <partial name="_TaskCard.cshtml" model="item" />
+            }
         }
     }
 </div>
 
-<hr class="border-dark" />
-<h2 class="display-4">Completed Tasks</h2>
+<h2>Completed Tasks</h2>
 <div class="row">
-    @foreach (var item in Model.MyTask)
+    @if(completedExists is false)
     {
-        @if (item.IsHighPriority && item.IsCompleted)
+        <div class="col">
+            <p class="text-muted">Completed tasks will appear here</p>
+        </div>
+    }
+    else
+    {
+        @foreach (var item in Model.MyTask)
         {
-            <partial name="_TaskCard.cshtml" model="item" />
+            @if (item.IsHighPriority && item.IsCompleted)
+            {
+                <partial name="_TaskCard.cshtml" model="item" />
+            }
+        }
+        @foreach (var item in Model.MyTask)
+        {
+            @if (!item.IsHighPriority && item.IsCompleted)
+            {
+                <partial name="_TaskCard.cshtml" model="item" />
+            }
         }
     }
-    @foreach (var item in Model.MyTask)
-    {
-        @if (!item.IsHighPriority && item.IsCompleted)
-        {
-            <partial name="_TaskCard.cshtml" model="item" />
-        }
-    }
+    
 </div>
 
 @section Scripts {
