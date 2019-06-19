@@ -1,5 +1,71 @@
 ﻿@page
-@model IndexModel
+@model TaskManagerApp.Pages.MyTasks.IndexModel
+
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "My Tasks";
+    var completedExists = Model.MyTask.Any(e => e.IsCompleted == true);
+}
+
+<div class="row">
+    <h3 class="col">My Tasks</h3>
+    <div class="col-2">
+        <a asp-page="Create" class="btn btn-success" role="button" data-toggle="tooltip" data-placement="right" title="Create New Task">Create</a>
+    </div>
+</div>
+
+<div class="row">
+    @if (Model.MyTask.Count == 0)
+    {
+        <div class="col">
+            <p class="text-muted">Your tasks will appear here. Try creating a new task</p>
+        </div>
+    }
+    else{
+        @foreach (var item in Model.MyTask)
+        {
+            @if (item.IsHighPriority && !item.IsCompleted)
+            {
+                <partial name="_TaskCard.cshtml" model="item" />
+            }
+        }
+        @foreach (var item in Model.MyTask)
+        {
+            @if (!item.IsHighPriority && !item.IsCompleted)
+            {
+                <partial name="_TaskCard.cshtml" model="item" />
+            }
+        }
+    }
+</div>
+
+<h2>Completed Tasks</h2>
+<div class="row">
+    @if(completedExists is false)
+    {
+        <div class="col">
+            <p class="text-muted">Completed tasks will appear here</p>
+        </div>
+    }
+    else
+    {
+        @foreach (var item in Model.MyTask)
+        {
+            @if (item.IsHighPriority && item.IsCompleted)
+            {
+                <partial name="_TaskCard.cshtml" model="item" />
+            }
+        }
+        @foreach (var item in Model.MyTask)
+        {
+            @if (!item.IsHighPriority && item.IsCompleted)
+            {
+                <partial name="_TaskCard.cshtml" model="item" />
+            }
+        }
+    }
+    
+</div>
+
+@section Scripts {
+    <partial name="_TaskCardScript.cshtml" />
 }
