@@ -35,3 +35,12 @@ Delete Containers
 ```sh
 docker-compose down
 ```
+
+# Screenshots
+
+Index Page
+![Alt text](/ScreenShots/index1.PNG?raw=true "Optional Title")
+![Alt text](/ScreenShots/index2.PNG?raw=true "Optional Title")
+
+Create Page
+![Alt text](/ScreenShots/create.PNG?raw=true "Optional Title")
